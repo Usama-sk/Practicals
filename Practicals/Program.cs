@@ -4,8 +4,9 @@ namespace Practicals
 {
     class Program
     {
+        // Fibonnic Series
         // Practical No 1 
-        public static string fibonacci_series(int length)
+        public static string Fibonacci_series(int length)
         {
             if (length == 0)
             {
@@ -28,9 +29,9 @@ namespace Practicals
             }
         }
 
-
-        // Practical No 1 
-        public static string reverse_fibonacci_series(int length)
+        // Fibonnic Reverse Series
+        // Practical No 2
+        public static string Reverse_fibonacci_series(int length)
         {
             if (length == 0)
             {
@@ -49,12 +50,14 @@ namespace Practicals
                     result = result + " " + c;
                 }
 
-                result = reverse_string(result);
+                result = Reverse_String(result);
                 return result;
             }
         }
 
-        public static string reverse_string(string input)
+        // Reverse String
+        // Practical No 3
+        public static string Reverse_String(string input)
         {
             char ch;
             string result = "";
@@ -69,27 +72,62 @@ namespace Practicals
             return result;
         }
 
-        public static string palandromeNumber(int input)
+        // Palindrome Integer
+        // Practical No 4
+        public static string PalindromeNumber(int input)
         {
             int r, sum = 0, temp;
             temp = input;
-            if (input != 0)
+            
+            while (input > 0)
             {
-                while (input > 0)
-                {
-                    r = input % 10;
-                    sum = (sum * 10) + r;
-                    input = input / 10;
-                }
-                if (temp == sum)
-                {
-                    return "Number is palandrome";
-                }
-                else
-                    return "Number not is palandrome";
+                r = input % 10;
+                sum = (sum * 10) + r;
+                input = input / 10;
+            }
+            if (temp == sum)
+            {
+                return "Number is palindrome";
             }
             else
-                return "Number not is palandrome";
+                return "Number not is palindrome";
+         
+           
+        }
+
+        // Palindrome String (Method 1)
+        // Practical No 5
+        public static string PalindromeString1(string input)
+        {
+            if (input.Length <= 1)
+                return "String is palindrome" + true;
+            else
+            {
+                if (input[0] != input[input.Length - 1])
+                    return "String is not palindrome" + false;
+                else
+                    return "String is palindrome" + PalindromeString1(input.Substring(1, input.Length - 2));
+            }
+        }
+
+        // Palindrome String (Method 2)
+        // Practical No 6
+        public static string PalindromeString2(string input)
+        {
+            string reverse ="";
+            for (int i = input.Length-1; i >=0 ; i--)
+            {
+                reverse += input[i].ToString();
+
+            }
+            if (reverse == input)
+            {
+                return "String is palindrome";
+            }
+            else
+                return "String is not palindrome";
+
+
         }
 
         //public static string palandromeString(int input)
@@ -155,7 +193,7 @@ namespace Practicals
         {
 
             
-            Console.WriteLine(palandromeNumber(0));
+            Console.WriteLine(PalindromeString2("ab"));
         }
     }
 }
