@@ -54,20 +54,7 @@ namespace Practicals
             }
         }
 
-        public static string reverse_string(string input)
-        {
-            char ch;
-            string result="";
-           
-            for (int i = 1; i<= input.Length; i++)
-            {
-                
-                ch = input[input.Length - i];
-                result = result + ch;
 
-            }
-            return result;
-        }
 
         public static string palandromeNumber(int input)
         {
@@ -92,70 +79,199 @@ namespace Practicals
                 return "Number not is palandrome";
         }
 
-        //public static string palandromeString(int input)
-        //{
-        //    int r, sum = 0, temp;
-        //    temp = input;
-        //    if(input != 0) 
-        //    { 
-        //        while (input > 0)
-        //        {
-        //            r = input % 10;
-        //            sum = (sum * 10) + r;
-        //            input = input / 10;
-        //        }
-        //        if (temp == sum)
-        //        {
-        //            return "Number is palandrome";
-        //        }
-        //        else
-        //            return "Number is palandrome";
-        //    }
-            
-        //}
+        public static string reverse_string(string input)
+        {
+            char ch;
+            string result = string.Empty;
 
-        //public static string reverse_string_Word(string input)
-        //{
+            for (int i = 1; i <= input.Length; i++)
+            {
 
-        //    char ch;
-        //    string[] str ;
-        //    string result = " ";
-        //    for (int i = 0; i < input.Length; i++)
-        //    {
-        //        if (input[i] == ' ')
+                ch = input[input.Length - i];
+                result = result + ch;
 
+            }
+            return result;
+        }
 
+        public static void ReverseWord(char[] myarr, int start, int end)
+        {
+            char temp;
+            for (; start <= end; start++)
+            {
+                temp = myarr[start];
+                myarr[start] = myarr[end];
+                myarr[end] = temp;
+                end--;
+            }
 
+        }
 
-        //    }
-        //    for (int i = input.Length; i < input.Length; i--)
-        //    {
-        //        ch = result[i];
-        //        int last = input.Length;
-        //        if (ch == ' ')
-        //            result = result + input.Substrin(i, last);
-
-
-        //                return result;
-
-
-        //    }
-
-        //    for (int i = 1; i <= input.Length; i++)
-        //    {
-        //        ch = input[input.Length - i];
-        //        result = result + ch;
-
-        //    }
-        //    //char[] charctr = result.ToCharArray();
-        //    return result;
-        //}
-
-        static void Main(string[] args)
+        public static char[] Reverse_Words(string input)
         {
 
+            char[] myarr = input.ToCharArray();
+            Console.WriteLine(myarr);
+            int start = 0;
+            for (int end = 0; end < myarr.Length; end++)
+            {
+                if (myarr[end] == ' ')
+                {
+                    ReverseWord(myarr, start, end - 1);
+                    start = end + 1;
+                }
+            }
 
-            Console.WriteLine(palandromeNumber(0));
+            ReverseWord(myarr, start, myarr.Length - 1);
+            ReverseWord(myarr, 0, myarr.Length - 1);
+            return myarr;
         }
+
+        public static void RightAngleTriangle(int length)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                for (int j = length; j > 0; j--)
+                {
+                    if (j > i + 1)
+                    {
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write("*");
+                    }
+
+
+
+                }
+                Console.WriteLine();
+            }
+        }
+        public static void LeftAngleTriangle(int length)
+        {
+            for (int i = 0; i <= length; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+
+                    Console.Write("*");
+
+
+                }
+                Console.WriteLine();
+            }
+        }
+        public static void DownRightAngleTriangle(int length)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                for (int j = length; j > 0; j--)
+                {
+                    if (j > length - i)
+                    {
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write("*");
+                    }
+
+
+                }
+                Console.WriteLine();
+            }
+        }
+        public static void DownLeftAngleTriangle(int length)
+        {
+
+            for (int i = 0; i <= length; i++)
+            {
+                for (int j = length; j > i; j--)
+                {
+
+                    Console.Write("*");
+
+
+                }
+                Console.WriteLine();
+            }
+        }
+        public static void Dimond(int length)
+        {
+
+            int a = length / 2;
+
+
+            for (int i = 0; i < a; i++)
+            {
+                for (int j = a; j > 0; j--)
+                {
+                    if (j > i + 1)
+                    {
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write("*");
+                    }
+
+
+
+                }
+                for (int j = 0; j < i; j++)
+                {
+
+                    Console.Write("*");
+
+
+                }
+                Console.WriteLine();
+
+            }
+            for (int i = 1; i < a; i++)
+            {
+                for (int j = a - 1; j > 0; j--)
+                {
+                    if (j >= a - i)
+                    {
+                        Console.Write(" ");
+                    }
+                    else
+                    {
+                        Console.Write("*");
+                    }
+
+
+                }
+                for (int j = a; j > i; j--)
+                {
+
+                    Console.Write("*");
+
+
+                }
+                Console.WriteLine();
+            }
+        }
+
+
+
+        public static void Main(string[] args)
+        {
+
+            RightAngleTriangle(10);
+
+            LeftAngleTriangle(10);
+
+            DownRightAngleTriangle(10);
+            DownLeftAngleTriangle(10);
+            Dimond(10);
+        }
+
+
+
+
     }
+
 }
