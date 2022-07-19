@@ -4,8 +4,9 @@ namespace Practicals
 {
     class Program
     {
+        // Fibonnic Series
         // Practical No 1 
-        public static string fibonacci_series(int length)
+        public static string Fibonacci_series(int length)
         {
             if (length == 0)
             {
@@ -28,9 +29,9 @@ namespace Practicals
             }
         }
 
-
-        // Practical No 1 
-        public static string reverse_fibonacci_series(int length)
+        // Fibonnic Reverse Series
+        // Practical No 2
+        public static string Reverse_fibonacci_series(int length)
         {
             if (length == 0)
             {
@@ -49,7 +50,8 @@ namespace Practicals
                     result = result + " " + c;
                 }
 
-                result = reverse_string(result);
+
+                result = Reverse_String(result);
                 return result;
             }
         }
@@ -77,11 +79,16 @@ namespace Practicals
             }
             else
                 return "Number not is palandrome";
+
+
         }
 
-        public static string reverse_string(string input)
+        // Reverse String
+        // Practical No 3
+        public static string Reverse_String(string input)
         {
             char ch;
+
             string result = string.Empty;
 
             for (int i = 1; i <= input.Length; i++)
@@ -93,6 +100,7 @@ namespace Practicals
             }
             return result;
         }
+
 
         public static void ReverseWord(char[] myarr, int start, int end)
         {
@@ -268,8 +276,6 @@ namespace Practicals
             DownLeftAngleTriangle(10);
             Dimond(10);
         }
-
-
 
 
     }
