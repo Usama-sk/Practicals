@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Practicals
@@ -383,6 +384,27 @@ namespace Practicals
         }
 
 
+        //Prime number is a number that is greater than 1 and divided by 1 or itself.
+        //In other words, prime numbers can't be divided by other numbers than itself 
+        //or 1. For example 2, 3, 5, 7, 11, 13, 17, 19, 23.... are the prime numbers.
+        public static void PrimeNumber()
+        {
+            int n, i, m = 0, flag = 0;
+            Console.Write("Enter the Number to check Prime: ");
+            n = int.Parse(Console.ReadLine());
+            m = n / 2;
+            for (i = 2; i <= m; i++)
+            {
+                if (n % i == 0)
+                {
+                    Console.Write("Number is not Prime.");
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 0)
+                Console.Write("Number is Prime.");
+        }
 
         // Practical No 1 
         public static void minusvalue()
@@ -392,6 +414,396 @@ namespace Practicals
             Console.WriteLine(c);
 
         }
+
+
+        //Alphabet triangle
+        //     A
+        //    ABA
+        //   ABCBA
+        //  ABCDCBA
+        // ABCDEDCBA
+        public static void Alphabettriangle()
+        {
+            char ch = 'A';
+            int i, j, k, m;
+            for (i = 1; i <= 5; i++)
+            {
+                for (j = 5; j >= i; j--)
+                    Console.Write(" ");
+                for (k = 1; k <= i; k++)
+                    Console.Write(ch++);
+                ch--;
+                for (m = 1; m < i; m++)
+                    Console.Write(--ch);
+                Console.Write("\n");
+                ch = 'A';
+            }
+        }
+
+
+
+
+
+
+        //Decimal to Binary Conversion Algorithm
+        //Step 1: Divide the number by 2 through % (modulus operator) and store the remainder in array
+
+        //Step 2: Divide the number by 2 through / (division operator)
+
+        //Step 3: Repeat the step 2 until the number is greater than zero
+
+        //Let's see the C# example to convert decimal to binary.
+
+
+        public static void DecimaltoBinary()
+        {
+            int n, i;
+            int[] a = new int[10];
+            Console.Write("Enter the number to convert: ");
+            n = int.Parse(Console.ReadLine());
+            for (i = 0; n > 0; i++)
+            {
+                a[i] = n % 2;
+                n = n / 2;
+            }
+            Console.Write("Binary of the given number= ");
+            for (i = i - 1; i >= 0; i--)
+            {
+                Console.Write(a[i]);
+            }
+        }
+
+
+        public static void BinarytoDecimal()
+        {
+            Console.Write("Enter the Binary Number : ");
+            int binaryNumber = int.Parse(Console.ReadLine());
+            int decimalValue = 0;
+            // initializing base1 value to 1, i.e 2^0 
+            int base1 = 1;
+
+            while (binaryNumber > 0)
+            {
+                int reminder = binaryNumber % 10;
+                binaryNumber = binaryNumber / 10;
+                decimalValue += reminder * base1;
+                base1 = base1 * 2;
+            }
+            Console.Write($"Decimal Value : {decimalValue} ");
+            Console.ReadKey();
+        }
+        //Binary to Octal Conversion in C# 
+        //The following C# Program will convert a binary number to its equivalent octal number.
+        //For more Understaning visit https://dotnettutorials.net/lesson/binary-to-octal-conversion-in-csharp/
+
+        public static void BinarytoOctal()
+        {
+            long Temp, BinaryNumber, p = 1, i = 1, j, d;
+            long DecimalNo = 0;
+            long OctalNo = 0;
+            Console.Write("Input a binary number :");
+            BinaryNumber = Convert.ToInt32(Console.ReadLine());
+            Temp = BinaryNumber;
+            for (j = BinaryNumber; j > 0; j = j / 10)
+            {
+                d = j % 10;
+                if (i == 1)
+                    p = p * 1;
+                else
+                    p = p * 2;
+                DecimalNo = DecimalNo + (d * p);
+                i++;
+            }
+            i = 1;
+            for (j = DecimalNo; j > 0; j = j / 8)
+            {
+                OctalNo = OctalNo + (j % 8) * i;
+                i = i * 10;
+                BinaryNumber = BinaryNumber / 8;
+            }
+            Console.Write("\nThe Binary Number : {0}\nThe equivalent Octal  Number is : {1} \n\n", Temp, OctalNo);
+            Console.ReadKey();
+        }
+
+        //Decimal to Octal Conversion in C# 
+        static void DecToOctal(int n)
+        {
+            int[] octalNum = new int[100];
+            int i = 0;
+            while (n != 0)
+            {
+                octalNum[i] = n % 8;
+                n /= 8;
+                i++;
+            }
+            Console.Write("Octal Number : ");
+            for (int j = i - 1; j >= 0; j--)
+                Console.Write(octalNum[j]);
+        }
+
+
+        //Convert decimal to Octal in C# 
+        static void Hexatodecimal()
+        {
+            long deci = 0;
+            Console.WriteLine("Enter the Hexadecimal number : ");
+            string hexadecimal = Console.ReadLine();
+            long c = hexadecimal.Length - 1;
+            for (int i = 0; i < hexadecimal.Length; i++)
+            {
+                char ch = hexadecimal[i];
+                switch (ch)
+                {
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                        deci = deci + Int32.Parse(ch.ToString()) * (int)Math.Pow(16, c);
+                        c--;
+                        break;
+                    case 'a':
+                    case 'A':
+                        deci = deci + 10 * (int)Math.Pow(16, c);
+                        c--;
+                        break;
+                    case 'b':
+                    case 'B':
+                        deci = deci + 11 * (int)Math.Pow(16, c);
+                        c--;
+                        break;
+                    case 'c':
+                    case 'C':
+                        deci = deci + 12 * (int)Math.Pow(16, c);
+                        c--;
+                        break;
+                    case 'd':
+                    case 'D':
+                        deci = deci + 13 * (int)Math.Pow(16, c);
+                        c--;
+                        break;
+                    case 'e':
+                    case 'E':
+                        deci = deci + 14 * (int)Math.Pow(16, c);
+                        c--;
+                        break;
+                    case 'f':
+                    case 'F':
+                        deci = deci + 15 * (int)Math.Pow(16, c);
+                        c--;
+                        break;
+                    default:
+                        Console.Write("Invalid hexa input");
+                        break;
+                }
+            }
+            string octal = "";
+            while (deci > 0)
+            {
+                octal = deci % 8 + octal;
+                deci = deci / 8;
+            }
+            Console.Write("Equivalent Octal Value of hexadecimal number is= " + octal);
+            Console.ReadKey();
+        }
+
+
+        //Octal to Binary Conversion in C#
+        static void OctaltoBinary()
+        {
+            long n1, n2, k = 1;
+            long decimal_number = 0, i = 1, j, d;
+            long binary_number = 0;
+            Console.Write("Input an octal number (using digit 0 - 7) : ");
+            n1 = Convert.ToInt32(Console.ReadLine());
+            n2 = n1;
+            for (j = n1; j > 0; j /= 10)
+            {
+                d = j % 10;
+                if (i == 1)
+                    k *= 1;
+                else
+                    k *= 8;
+                decimal_number = decimal_number + (d * k);
+                i++;
+            }
+            i = 1;
+            for (j = decimal_number; j > 0; j /= 2)
+            {
+                binary_number = binary_number + (decimal_number % 2) * i;
+                i *= 10;
+                decimal_number /= 2;
+            }
+            Console.Write("\nThe Octal Number: {0}\nThe equivalent Binary  Number: {1} \n\n", n2, binary_number);
+            Console.ReadKey();
+        }
+
+        //Octal to Decimal Number Conversion in C# 
+        private static int Octal_Decimal(int OctalNumber)
+        {
+            int Decimal_Number = 0;
+            int BASE = 1;
+            int temp = OctalNumber;
+            while (temp > 0)
+            {
+                int last_digit = temp % 10;
+                temp /= 10;
+                Decimal_Number += last_digit * BASE;
+                BASE *= 8;
+            }
+            return Decimal_Number;
+        }
+        public static void FibonacciTriangle()
+
+        {
+            int a = 0, b = 1, i, c, n, j;
+            Console.Write("Enter the limit: ");
+            n = int.Parse(Console.ReadLine());
+            for (i = 1; i <= n; i++)
+            {
+                a = 0;
+                b = 1;
+                Console.Write(b + "\t");
+                for (j = 1; j < i; j++)
+                {
+                    c = a + b;
+                    Console.Write(c + "\t");
+                    a = b;
+                    b = c;
+                }
+                Console.Write("\n");
+            }
+        }
+
+        //Algorithm to find all possible substring of a given string:
+        //Step1: Define a string.
+        //Step2: The first loop(i.e.the outer loop) will keep the first character of the substring.
+        //Step3: The second loop (i.e.the inner loop) will build the substring by adding one character in each iteration till the end of the string is reached.
+        //For Example, if the given String is “ABCD”
+        //Then the first loop will hold the position of A, then B then C and finally D
+        //The second loop will be substring the string into
+        //For i = 1: A, AB, ABC, then ABCD for the last iteration
+        //For i=2: B, BC and then BCD
+        //For i = 3: C and then CD
+        //For i = 4: D
+        //Step4: Print the substring
+        public static void Substring1()
+        {
+            Console.Write("Enter a String : ");
+            string inputString = Console.ReadLine();
+
+            Console.WriteLine("All substrings for given string are : ");
+
+            for (int i = 0; i < inputString.Length; ++i)
+            {
+                StringBuilder subString = new StringBuilder(inputString.Length - i);
+                for (int j = i; j < inputString.Length; ++j)
+                {
+                    subString.Append(inputString[j]);
+                    Console.Write(subString + " ");
+                }
+            }
+            Console.ReadKey();
+        }
+
+        //Method2
+        //Using Substring method:
+        //In the following example, we use the built-in substring method to create the string. 
+        //The Substring(i, len) creates a substring of length ‘len’ starting from index i in the given string
+        public static void Substring2()
+
+        {
+            Console.Write("Enter a String : ");
+            string inputString = Console.ReadLine();
+
+            int len = inputString.Length;
+            Console.WriteLine("All substrings for given string are : ");
+
+            //This loop maintains the starting character  
+            for (int i = 0; i < len; i++)
+            {
+                //This loop adds the next character every iteration for the substring and then print
+                for (int j = 0; j < len - i; j++)
+                {
+                    Console.Write(inputString.Substring(i, j + 1) + " ");
+                }
+            }
+
+            Console.ReadKey();
+        }
+
+
+        //Finding Unique Substrings of a Given String in C#:
+        //In the following example, we are storing all the possible substrings
+        //into an array.Then use the Linq Distinct method to get the distinct values only.
+        public static void UniqueSubstring1()
+        {
+            Console.Write("Enter a String : ");
+            string inputString = Console.ReadLine();
+            int len = inputString.Length;
+            int temp = 0;
+            //Total possible substrings for string of size n is n*(n+1)/2  
+            String[] SubstringArray = new String[len * (len + 1) / 2];
+
+            //This loop maintains the starting character  
+            for (int i = 0; i < len; i++)
+            {
+                //This loop adds the next character every iteration for the substring 
+                //and then store into the array
+                for (int j = 0; j < len - i; j++)
+                {
+                    SubstringArray[temp] = inputString.Substring(i, j + 1);
+                    temp++;
+                }
+            }
+            //Get the distinct array  
+            SubstringArray = SubstringArray.Distinct().ToArray();
+            //Print the array  
+            Console.WriteLine("All Unique substrings for given string are : ");
+            for (int i = 0; i < SubstringArray.Length; i++)
+            {
+                Console.Write(SubstringArray[i] + " ");
+            }
+
+            Console.ReadKey();
+        }
+        //Method2
+        //Using LINQ to Find All and Unique Substrings of a Given String in C#:
+        //In the following example, we show you how to use LINQ query to find all the possible
+        //substrings as well as unique strings of a given string.
+        public static void UniqueSubstring2()
+
+        {
+            Console.Write("Enter a String : ");
+            string inputString = Console.ReadLine();
+
+            var Substrings =
+                from i in Enumerable.Range(0, inputString.Length)
+                from j in Enumerable.Range(0, inputString.Length - i + 1)
+                where j >= 1
+                select inputString.Substring(i, j);
+            //Print the array 
+            Console.WriteLine();
+            Console.WriteLine("All substrings for given string are : ");
+            foreach (string substring in Substrings)
+            {
+                Console.Write(substring + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("All Unique substrings for given string are : ");
+            foreach (string substring in Substrings.Distinct())
+            {
+                Console.Write(substring + " ");
+            }
+            Console.ReadKey();
+        }
+
 
         //Q.5: How to count the occurrence of each character in a string?
         //Ans.: The user will input a string and we need to find the count of each character of the string and display it on console. We won’t be counting space character.
